@@ -82,9 +82,18 @@ def getPenalty(data: List[Task]) -> int:
         penalty += getTaskPenalty(item, t)
     return penalty
 
-def printData(data):
-    for item in data:
-        print(item)
+def getTaskPenalty(task: Task, t: int) -> None:
+    """
+        Get penalty value for a given task at a given time.
+        
+        Params:
+        - `task: Task` - `Task` object to caltulcate penalty for
+        - `t: int` - time to calculate amount of delay
+        
+        Returns:
+        - `int` - penalty value
+    """
+    return task.w * (t - task.d) if t>task.d else 0
 
 def optimize(data):
     data = np.asarray(data.copy())
