@@ -1,0 +1,44 @@
+DATASET : data0.txt
+Total penalty: 766
+Order: 6 9 2 5 1 3 4 7 8 10
+Execution time: 0.00835 s
+DATASET : data1.txt
+Total penalty: 799
+Order: 6 9 2 11 5 1 3 7 4 8 10
+Execution time: 0.0173 s
+DATASET : data2.txt
+Total penalty: 742
+Order: 6 9 2 11 5 1 3 12 7 4 8 10
+Execution time: 0.0382 s
+DATASET : data3.txt
+Total penalty: 688
+Order: 6 9 5 2 11 1 3 7 12 4 8 10 13
+Execution time: 0.0774 s
+DATASET : data4.txt
+Total penalty: 497
+Order: 6 9 5 1 2 3 11 7 12 4 8 10 13 14
+Execution time: 0.165 s
+DATASET : data5.txt
+Total penalty: 440
+Order: 6 9 5 1 2 3 11 4 12 7 8 10 13 14 15
+Execution time: 0.354 s
+DATASET : data6.txt
+Total penalty: 423
+Order: 6 9 5 1 2 3 7 11 4 12 8 10 13 14 15 16
+Execution time: 0.75 s
+DATASET : data7.txt
+Total penalty: 417
+Order: 6 9 5 1 2 3 7 11 4 12 8 10 13 14 15 16 17
+Execution time: 1.58 s
+DATASET : data8.txt
+Total penalty: 405
+Order: 6 9 5 1 2 3 7 11 12 16 17 18 4 8 10 13 14 15
+Execution time: 3.28 s
+DATASET : data9.txt
+Total penalty: 393
+Order: 6 9 5 1 2 3 4 11 12 16 18 7 8 10 13 14 15 19 17
+Execution time: 6.76 s
+DATASET : data10.txt
+Total penalty: 897
+Order: 6 20 9 5 1 2 3 7 11 12 18 4 8 10 13 14 16 17 19 15
+Execution time: 14.3 s
