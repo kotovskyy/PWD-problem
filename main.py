@@ -61,14 +61,25 @@ def printData(data: List[Task]) -> None:
         print(item)
     print("-----------------")
 
-def getPenalty(data):
+def getPenalty(data: List[Task]) -> int:
+    """
+        Get total penalty for `data` in provided order.
+        
+        Params:
+        - `data: List[Task]` - array of `Task` objects. Penalty is calculated
+            for the order given by this array.
+        
+        Returns:
+        - `int` - total penalty value
+    """
     data = np.asarray(data.copy())
-    C = getTotalTime(data)
+    if len(data) < 1:
+        return 0
     t = 0
     penalty = 0
     for item in data:
         t += item.p
-        penalty += item.w * (t - item.d) if (t-item.d)>0 else 0
+        penalty += getTaskPenalty(item, t)
     return penalty
 
 def printData(data):
