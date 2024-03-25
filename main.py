@@ -4,7 +4,16 @@ import numpy as np
 from typing import List
 
 class Task:
-    def __init__(self, id, p, w, d) -> None:
+    """
+        Class repesenting `Task` object for PWD problem.
+    """
+    def __init__(self, id: int, p: int, w: int, d: int) -> None:
+        """
+            - `id: int` - task's id based on the order in the dataset
+            - `p: int` - tasks execution time
+            - `w: int` - 'weight' or cost per one unit of delay
+            - `d: int` - task's completion deadline
+        """
         self.id = id
         self.p = p
         self.w = w
