@@ -48,11 +48,18 @@ def readData(filepath: str) -> List[Task]:
     
     return items
 
-def getTotalTime(data):
-    sum = 0
+def printData(data: List[Task]) -> None:
+    """
+        Print array `data` of `Task` elements. 
+        
+        Created for conveniense.
+        Params:
+        - `data:  List[Task]` - array of `Task` objects
+    """
+    print("-----------------")
     for item in data:
-        sum += item.p
-    return sum
+        print(item)
+    print("-----------------")
 
 def getPenalty(data):
     data = np.asarray(data.copy())
