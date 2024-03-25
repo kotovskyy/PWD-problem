@@ -22,7 +22,7 @@ class Task:
     def __repr__(self):
         return f"{self.id} {self.p} {self.w} {self.d}"
 
-def readData(filepath: str):
+def readData(filepath: str) -> List[Task]:
     """
         Read data from a ".txt" file and return an indexed array.
         
@@ -30,7 +30,7 @@ def readData(filepath: str):
         - `filepath: str` - path to the data file
         
         Returns:
-        - array of `Task` objects
+        - `List[Task]` - array of `Task` objects
     """
     with open(filepath) as file:
         data = file.readlines()
