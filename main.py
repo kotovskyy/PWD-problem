@@ -95,12 +95,28 @@ def getTaskPenalty(task: Task, t: int) -> None:
     """
     return task.w * (t - task.d) if t>task.d else 0
 
-def optimize(data):
-    data = np.asarray(data.copy())
-    n_subtasks = 2**len(data)
-    start = np.zeros((len(data)), dtype=bool)
-    printData(data[start])
-    print(start)
+def getTotalTime(data: List[Task], orderID: int) -> int:
+    """
+        Get total time needed to complete set of tasks in the order, specified 
+        by the `orderID`. Ex.:  
+        
+        `orderID = 3 = (0011)_2`; `i` in `[0, len(data))`  
+        
+        `1 << i` produces values `0001`, `0010`, `0100` etc. Next, bitwise AND 
+        operation is used to see if task with id `1 << i` is in the order
+        
+        Params:
+        - `data: List[Task]` - 
+        - `orderID: int` - id of the tasks order `[0, 2**len(data))`
+        
+        Returns:
+        - `int` - total completion time
+    """
+    sum = 0
+    for i in range(len(data)):
+        if (1 << i) & orderID:
+            sum += data[i].p
+    return sum
 
 def main():
     data = readData("data/data0.txt")
