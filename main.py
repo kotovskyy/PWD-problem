@@ -118,15 +118,80 @@ def getTotalTime(data: List[Task], orderID: int) -> int:
             sum += data[i].p
     return sum
 
-def main():
-    data = readData("data/data0.txt")
-    printData(data)
-    penalty = getPenalty(data)
-    time = getTotalTime(data)
-    print(f"Total time: {time}")
-    print(f"Penalty: {penalty}")
-    optimize(data)
+def PD_Algorithm(data):
+    N = len(data)
+    table = [0] + [math.inf for _ in range(2**N-1)]
+    table_order = [[] for _ in range(2**N)]
+
+    for i in range(1, 2**N):
+        time = getTotalTime(data, i)
+        k, j, index = 0, 1, 0
+        while (j <= i):
+            if i & j:
+                prev = table[i-j]
+                penalty = getTaskPenalty(data[k], time)
+                if not math.isinf(prev):
+                    penalty += prev
+                
+                if table[i] > penalty:
+                    table[i] = penalty
+                    table_order[i] = table_order[i-j][:]
+                    index = k
+                elif (table[i] == penalty) and (table_order[i] > table_order[i-j]):
+                    table_order[i] = table_order[i-j][:]
+                    index = k
+            j <<= 1
+            k += 1
+            
+        table_order[i].append(data[index].id)
+        
+    return table_order[-1]
+
+
+def calculate_time(func):
+    """
+        Decorator to calculate total execution time of a function.
+    """
+    def inner(*args, **kwargs):
+        import time
+        start = time.time()
+        func(*args, **kwargs)
+        end = time.time()
+        totalTime = end - start
+        print(f"Execution time: {totalTime:.3} s")
+        
+    return inner
+
+@calculate_time
+def testSolution(filename: str) -> None:
+    """
+        Solve PWD problem for a dataset with `filename` name.
+        
+        Params:
+        - `filename: str` - name of the data file. Must be of type ".txt" and 
+        placed into `data/` folder. File must have structure:
+            - 1st line: number of tasks in the dataset
+            - N line: task described with 3 `int`s separated by spaces: "p w d"
+    """
+    filepath = f"data/{filename}"
+    data = readData(filepath)
+    print(f"DATASET : {filename}")
+    # printData(data)
+    order = PD_Algorithm(data)
+    totalPenalty = getPenalty(np.array(data)[order])
     
+    print(f"Total penalty: {totalPenalty}")
+    print(f"Order: {" ".join([str(item + 1) for item in order])}")
+
+def testMultiple(filenames):
+    for filename in filenames:
+        testSolution(filename)
+
+def main():
+    filenames = ["data0.txt", "data1.txt", "data2.txt", "data3.txt",
+                 "data4.txt", "data5.txt", "data6.txt", "data7.txt",
+                 "data8.txt", "data9.txt", "data10.txt"]
+    testMultiple(filenames)
+        
 if __name__ == "__main__":
     main()
-    
