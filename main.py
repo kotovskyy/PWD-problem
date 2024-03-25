@@ -118,7 +118,24 @@ def getTotalTime(data: List[Task], orderID: int) -> int:
             sum += data[i].p
     return sum
 
-def PD_Algorithm(data):
+def PD_Algorithm(data: List[Task]) -> List[int]:
+    """
+        PD algorithm for PWD problem solving.
+        `N` is the number of tasks in `data` array. Number of possible tasks
+        combinations is `2**N`. Array `table` contains smallest possible penalty
+        value for a given task combination. Indicies in `table` are in range 
+        `[0, 2**N]` (index `0` - no tasks are taken, index `2**N-1 - all tasks).
+        Algorithm goes through all possible combinations finding optimal order, 
+        which is then being saved to `table_order`, where every element with
+        indicies `[0, 2**N]` contains `List[int]`. This array corresponds to
+        task's ids in optimal order. 
+        
+        Params:
+        - `data: List[Task]` - array of tasks to optimize
+        
+        Returns:
+        - `List[int]` - array of task's ids in optimized order
+    """
     N = len(data)
     table = [0] + [math.inf for _ in range(2**N-1)]
     table_order = [[] for _ in range(2**N)]
