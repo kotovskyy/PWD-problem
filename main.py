@@ -1,5 +1,7 @@
 import time
+import math
 import numpy as np
+from typing import List
 
 class Task:
     def __init__(self, id, p, w, d) -> None:
